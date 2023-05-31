@@ -15,6 +15,13 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".favourite.view.MyPlanActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".mealDetails.view.MealDetailsActivity"
             android:exported="false">
             <meta-data

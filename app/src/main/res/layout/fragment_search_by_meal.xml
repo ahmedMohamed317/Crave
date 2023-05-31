@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/searchbymeallayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".searchByMeal.view.SearchByMealFragment">
+
+        <CalendarView
+            android:id="@+id/calendarView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/search_view_rounded"
+            android:drawableStart="@drawable/baseline_search_24"
+            android:hint="Search By Meal Name"
+            android:padding="12dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_by_meal_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="10"
+            tools:orientation="horizontal" />
+
+    </LinearLayout>
+</ScrollView>

@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.craveapplication.model.Meal;
 
-@Database(entities = Meal.class, version = 1)
+@Database(entities = Meal.class, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 

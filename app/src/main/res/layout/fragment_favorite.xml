@@ -8,39 +8,60 @@
     android:layout_height="match_parent">
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="544dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_map_24" />
+
     <ScrollView
         android:id="@+id/scrollView_adapter"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="286dp"
+        android:layout_height="745dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-
-            <TextView
-                android:id="@+id/your_fav_meals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your favorite meals"
-                android:textColor="@color/active"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fav_recycle_view"
-                android:layout_width="match_parent"
-                android:layout_height="714dp"
-                android:layout_marginTop="16dp" />
+                android:layout_width="284dp"
+                android:layout_height="595dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.304"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/your_fav_meals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Your favorite meals"
+        android:textColor="@color/active"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

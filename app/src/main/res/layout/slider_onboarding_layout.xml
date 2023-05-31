@@ -29,13 +29,12 @@
         android:textAlignment="center"
         android:textColor="#20272C"
         android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splash_lotti"
-        android:fontFamily="@font/kavoon"/>
+        app:layout_constraintTop_toBottomOf="@+id/splash_lotti" />
 
     <TextView
-        android:fontFamily="@font/kavoon"
         android:id="@+id/description_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

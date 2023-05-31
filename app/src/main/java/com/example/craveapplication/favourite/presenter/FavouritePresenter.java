@@ -1,11 +1,17 @@
 package com.example.craveapplication.favourite.presenter;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import com.example.craveapplication.model.Meal;
 import com.example.craveapplication.roomDatabase.RepoInterface;
 import com.example.craveapplication.searchResult.view.SearchResultInterface;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavouritePresenter {
@@ -35,6 +41,7 @@ public class FavouritePresenter {
 
         return repoInterface.getCachedMeals();
     }
+
 
 
 

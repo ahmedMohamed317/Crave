@@ -14,11 +14,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:backgroundTint="#D1CBCB"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/lily_script_one"
-        android:foregroundTint="#EAE4E4"
         android:text="Crave"
-        android:textColor="#C8C4C4"
+        android:textColor="@color/white"
         android:textSize="96sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,9 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/lily_script_one"
+        android:fontFamily="sans-serif-medium"
         android:text="Meal Planner Application "
-        android:textColor="#C8C4C4"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -50,5 +49,16 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/burger" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="80dp"
+        android:text="By Ahmed morad"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

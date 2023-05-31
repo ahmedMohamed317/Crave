@@ -18,9 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/active"
-            android:fontFamily="@font/kavoon"
+            android:fontFamily="sans-serif-medium"
             android:text="Dish of the day"
-            android:textColor="@color/active" />
+            android:textColor="@color/active"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewDishOfTheDay"
@@ -40,9 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/active"
-            android:fontFamily="@font/kavoon"
+            android:fontFamily="sans-serif-medium"
             android:text="Suggested Dishes"
-            android:textColor="@color/active" />
+            android:textColor="@color/active"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycelrViewYouMightLikeHome"

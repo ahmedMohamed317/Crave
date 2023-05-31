@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/kavoon"
         android:text="Skip"
         android:textColor="@color/active"
         android:textSize="24sp"
@@ -27,7 +26,7 @@
         style="?attr/textInputOutlinedStyle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="16dp"
         app:boxCornerRadiusBottomEnd="15dp"
         app:boxCornerRadiusBottomStart="15dp"
         app:boxCornerRadiusTopEnd="15dp"
@@ -44,8 +43,7 @@
             android:id="@+id/textInputEditTextEmailSignup"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/active"
-            android:fontFamily="@font/kavoon"
+            android:background="@drawable/search_view_rounded"
             android:hint="  Email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -67,14 +65,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassWordSignup">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassWordSignup"
+        app:layout_constraintVertical_bias="0.333">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextConfirmPassSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/active"
-            android:fontFamily="@font/kavoon"
+            android:background="@drawable/search_view_rounded"
             android:hint="  Confirm password"
             android:inputType="textPassword"
             android:maxLines="1"
@@ -96,14 +94,13 @@
         app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmailSignup"
-        app:layout_constraintVertical_bias="0.135">
+        app:layout_constraintVertical_bias="0.086">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextPassSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/active"
-            android:fontFamily="@font/kavoon"
+            android:background="@drawable/search_view_rounded"
             android:hint="  Password"
             android:inputType="textPassword"
             android:maxLines="1"
@@ -121,24 +118,23 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/loginTxt"
+        app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password_InputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/confirm_password_InputLayout"
+        app:layout_constraintVertical_bias="0.605" />
 
     <TextView
         android:id="@+id/loginTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="108dp"
         android:text="Login"
         android:textColor="@color/active"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupBtn"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -153,16 +149,44 @@
 
     <Button
         android:id="@+id/signupBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/kavoon"
+        android:elevation="20dp"
         android:text="Sign up"
         app:circularflow_defaultRadius="15dp"
         app:circularflow_radiusInDP="15dp"
         app:layout_constraintBottom_toTopOf="@+id/dish_of_the_day"
         app:layout_constraintCircleRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password_InputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/confirm_password_InputLayout"
+        app:layout_constraintVertical_bias="0.395" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/googleSignIN"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:elevation="20dp"
+        android:src="@drawable/google"
+        app:layout_constraintBottom_toTopOf="@+id/dish_of_the_day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.628"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupBtn"
+        app:layout_constraintVertical_bias="0.481" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/githubSignIN"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:elevation="20dp"
+        android:src="@drawable/githhub"
+        app:layout_constraintBottom_toTopOf="@+id/dish_of_the_day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupBtn"
+        app:layout_constraintVertical_bias="0.481" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
