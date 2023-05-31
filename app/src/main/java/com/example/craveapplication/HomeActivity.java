@@ -9,20 +9,27 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.craveapplication.roomDatabase.Repo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
+     public static String userEmail;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         userEmail = getIntent().getStringExtra("userEmail");
+        System.out.println(userEmail+"in home");
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.search:

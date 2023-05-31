@@ -1,5 +1,6 @@
 package com.example.craveapplication.mealDetails.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.craveapplication.HomeActivity;
 import com.example.craveapplication.R;
 import com.example.craveapplication.favourite.presenter.FavouritePresenter;
 import com.example.craveapplication.mealDetails.presenter.MealsDetailsPresenter;
@@ -23,6 +25,15 @@ import com.example.craveapplication.remoteSource.remoteAPI.RemoteSource;
 import com.example.craveapplication.roomDatabase.ConcreteLocalSource;
 import com.example.craveapplication.roomDatabase.Repo;
 import com.example.craveapplication.roomDatabase.RepoInterface;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -49,6 +60,7 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
     boolean isFav = false ;
     FavouritePresenter favouritePresenter ;
     Meal mealFav;
+    CollectionReference mealsCollection ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,30 +90,76 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
         adapter = new MealIngeridentsAdapter(getApplicationContext(),ingredientsList);
         rvIngredients.setAdapter(adapter);
         mealFav = new Meal();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        mealsCollection = db.collection("meals");
 
         favImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isFavFromFavouritePage){
-                    isFav=true;
 
+                if ( HomeActivity.userEmail==null){
+                    if(isFavFromFavouritePage){
+                        isFav=true;
+
+                    }
+                    if(isFav){
+                        favImg.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                        isFav=false;
+                        favouritePresenter.deleteFav(mealFav);
+                        Toast.makeText(getApplicationContext(), "The meal is deleted", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+                        favImg.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        isFav=true;
+                        favouritePresenter.addFav(mealFav);
+                        //Toast.makeText(getApplicationContext(), "The meal is added to favorite list", Toast.LENGTH_SHORT).show();
+
+
+                    }
                 }
-                if(isFav){
-                    favImg.setImageResource(R.drawable.ic_baseline_favorite_border_24);
-                    isFav=false;
-                    favouritePresenter.deleteFav(mealFav);
-                    Toast.makeText(getApplicationContext(), "Your meal is deleted", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    if(isFavFromFavouritePage){
+                        isFav=true;
 
-                }
-                else {
-                    favImg.setImageResource(R.drawable.ic_baseline_favorite_24);
-                    isFav=true;
-                    favouritePresenter.addFav(mealFav);
+                    }
+                    if(isFav){
+                        favImg.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                        isFav=false;
+                        favouritePresenter.deleteFav(mealFav);
+                        Toast.makeText(getApplicationContext(), "Your meal is deleted", Toast.LENGTH_SHORT).show();
+                        deleteFromFirebase("idMeal",mealFav.getIdMeal());
+
+                    }
+                    else {
+                        favImg.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        isFav=true;
+                        favouritePresenter.addFav(mealFav);
+                        DocumentReference mealDocument = mealsCollection.document();
+                        mealFav.setEmail(HomeActivity.userEmail);
+                        favouritePresenter.addFav(mealFav);
+                        mealDocument.set(mealFav)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        System.out.println("Meal is added");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        System.out.println("Meal isn't added due to error on meal doc");
+                                    }
+                                });
 
 
-                }
+                    }
+            }
             }
         });
+
+
 
 
 
@@ -218,6 +276,35 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
             }
         }
         return videoId;
+    }
+
+    public void deleteFromFirebase(String fieldName ,String fieldValue )
+
+    {
+        mealsCollection.whereEqualTo(fieldName, fieldValue)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Iterate through the matching documents and delete them
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                document.getReference().delete();
+                            }
+                            // Handle success
+                        } else {
+                            // Handle error
+                            Toast.makeText(getApplicationContext(), "Your meal isn't deleted on firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+
+
+
+
+
     }
 
 }

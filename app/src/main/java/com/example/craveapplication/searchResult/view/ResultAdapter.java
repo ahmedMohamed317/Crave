@@ -15,10 +15,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.craveapplication.HomeActivity;
 import com.example.craveapplication.R;
 import com.example.craveapplication.favourite.view.FavouriteFragmentInterface;
 import com.example.craveapplication.mealDetails.view.MealDetailsActivity;
 import com.example.craveapplication.model.Meal;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -27,6 +33,10 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     private List<Meal> meals;
     String type ;
     private SearchResultInterface listener ;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference mealsCollection = db.collection("meals");
+    DocumentReference mealDocument = mealsCollection.document();
+
 
 
     public ResultAdapter(Context context, List<Meal> meals , SearchResultInterface listener , String type  ) {
@@ -70,7 +80,31 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         holder.favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.addFav(meal);
+                System.out.println(HomeActivity.userEmail);
+                if ( HomeActivity.userEmail==null)
+                    {listener.addFav(meal);}
+                else
+                {
+                    String documentId = HomeActivity.userEmail ;
+                    DocumentReference mealDocument = mealsCollection.document();
+                    meal.setEmail(HomeActivity.userEmail);
+                    listener.addFav(meal);
+                    mealDocument.set(meal)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    System.out.println("Meal is added");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    System.out.println("Meal isn't added due to error on meal doc");
+                                }
+                            });
+
+
+                }
                 Toast.makeText(context, "Meal is added", Toast.LENGTH_SHORT).show();
             }
         });

@@ -16,9 +16,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.craveapplication.HomeActivity;
 import com.example.craveapplication.R;
 import com.example.craveapplication.mealDetails.view.MealDetailsActivity;
 import com.example.craveapplication.model.Meal;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
@@ -28,8 +35,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
     private final Context context;
     private List<Meal> meals;
     FavouriteFragmentInterface listener;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference mealsCollection = db.collection("meals");
 
-    public FavoriteAdapter(Context context, List<Meal> meals , FavouriteFragmentInterface listener) {
+    public FavoriteAdapter(Context context, List<Meal> meals, FavouriteFragmentInterface listener) {
         this.context = context;
         this.meals = meals;
         this.listener = listener;
@@ -61,16 +70,33 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         holder.unFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.deleteFav(meals.get(position));
-                Toast.makeText(context, "Your meal is deleted", Toast.LENGTH_SHORT).show();
+                if ( HomeActivity.userEmail==null){
+                    listener.deleteFav(meals.get(position));
+                    Toast.makeText(context, "Your meal is deleted", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    listener.deleteFav(meals.get(position));
+                    Toast.makeText(context, "Your meal is deleted", Toast.LENGTH_SHORT).show();
+                    deleteFromFirebase("idMeal",meals.get(position).getIdMeal());
+
+
+
+                }
+
+
+
+
+
+
             }
 
         });
         holder.imageView.setOnClickListener(view -> {
 
-            Intent intent =new Intent(context, MealDetailsActivity.class);
-            intent.putExtra("mealID",meals.get(position).getIdMeal());
-            intent.putExtra("isFav",true);
+            Intent intent = new Intent(context, MealDetailsActivity.class);
+            intent.putExtra("mealID", meals.get(position).getIdMeal());
+            intent.putExtra("isFav", true);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
@@ -98,9 +124,31 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
             txtTitle = itemView.findViewById(R.id.meal_fav);
             imageView = itemView.findViewById(R.id.thumbnail_fav);
             constraintLayout = itemView.findViewById(R.id.layout_fav);
-            unFav=itemView.findViewById(R.id.unfav_button);
+            unFav = itemView.findViewById(R.id.unfav_button);
 
 
         }
+    }
+
+    public void deleteFromFirebase(String fieldName, String fieldValue) {
+        mealsCollection.whereEqualTo(fieldName, fieldValue)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Iterate through the matching documents and delete them
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                document.getReference().delete();
+                            }
+                            // Handle success
+                        } else {
+                            // Handle error
+                            Toast.makeText(context.getApplicationContext(), "Your meal isn't deleted on firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
     }
 }

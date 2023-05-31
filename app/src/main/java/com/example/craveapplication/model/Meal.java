@@ -20,6 +20,17 @@ public class Meal {
     @SerializedName("strMealThumb")
     private String mStrMealThumb;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @SerializedName("email")
+    private String email;
+
     public String getIdMeal() {
         return mIdMeal;
     }

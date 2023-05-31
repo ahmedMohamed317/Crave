@@ -4,10 +4,13 @@ import com.example.craveapplication.model.AreaResponse;
 import com.example.craveapplication.model.CategoryResponse;
 import com.example.craveapplication.model.DetailMealResponse;
 import com.example.craveapplication.model.IngredientResponse;
+import com.example.craveapplication.model.MealByNameResponse;
 import com.example.craveapplication.model.MealResponse;
 import com.example.craveapplication.model.RandomMeal;
 import com.example.craveapplication.model.SuggestedMeal;
 
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -40,6 +43,8 @@ public interface ApiService {
     @GET("lookup.php")
     Call<DetailMealResponse> getDetailMeal(@Query("i") String id);
 
+    @GET("search.php")
+    Single<MealByNameResponse> getMealsByName(@Query("s") String name);
 
 
 

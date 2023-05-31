@@ -6,6 +6,7 @@ import com.example.craveapplication.model.CategoryResponse;
 import com.example.craveapplication.model.DetailMealResponse;
 import com.example.craveapplication.model.IngredientResponse;
 import com.example.craveapplication.model.Meal;
+import com.example.craveapplication.model.MealByNameResponse;
 import com.example.craveapplication.model.MealResponse;
 import com.example.craveapplication.model.RandomMeal;
 import com.example.craveapplication.model.SuggestedMeal;
@@ -16,6 +17,10 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +40,7 @@ public class ApiClient implements RemoteSource{
                 .Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build()
                 .create(ApiService.class);
     }
@@ -215,5 +221,9 @@ public class ApiClient implements RemoteSource{
         });
 
 
+    }
+
+    public Single<MealByNameResponse> getMealsByName(String name) {
+        return retrofit.getMealsByName(name);
     }
 }

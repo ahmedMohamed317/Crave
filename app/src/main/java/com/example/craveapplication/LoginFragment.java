@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.craveapplication.roomDatabase.AppDatabase;
+import com.example.craveapplication.roomDatabase.MealDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -112,6 +114,16 @@ public class LoginFragment extends Fragment {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(getActivity().getApplicationContext(), "Login Success.",
                                             Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getContext(), HomeActivity.class);
+                                    intent.putExtra("userEmail",email);
+                                    getContext().startActivity(intent);
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            AppDatabase appDatabase = AppDatabase.getInstance(getContext());
+                                            appDatabase.mealDao().deleteAllMeals();
+                                        }
+                                    }).start();
                                 } else {
                                     Toast.makeText(getActivity().getApplicationContext(), "Login failed.",
                                             Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package com.example.craveapplication.searchResult.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,10 @@ import com.example.craveapplication.roomDatabase.ConcreteLocalSource;
 import com.example.craveapplication.roomDatabase.Repo;
 import com.example.craveapplication.roomDatabase.RepoInterface;
 import com.example.craveapplication.searchResult.presenter.SearchResultPresenter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +62,8 @@ public class SearchResultActivity extends AppCompatActivity implements SearchRes
 
         resultPresenter.addFav(meal);
     }
+
+
+
 
 }

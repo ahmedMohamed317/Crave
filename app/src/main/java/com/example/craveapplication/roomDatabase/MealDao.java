@@ -20,4 +20,8 @@ public interface MealDao {
 
     @Delete
     void deleteMeal(Meal meal);
+
+
+    @Query("DELETE FROM meals")
+    void deleteAllMeals();
 }
