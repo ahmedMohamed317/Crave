@@ -88,6 +88,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), HomeActivity.class);
                 startActivity(intent);
+
             }
         });
         buttonLogin.setOnClickListener(new View.OnClickListener() {

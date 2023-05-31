@@ -2,7 +2,7 @@ package com.example.craveapplication.favourite.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,16 +30,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+public class MyPlanAdapter extends RecyclerView.Adapter<MyPlanAdapter.MealViewHolder>{
 
-public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealViewHolder> {
     private static final String TAG = "RecycleView";
     private final Context context;
     private List<Meal> meals;
     FavouriteFragmentInterface listener;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference mealsCollection = db.collection("meals");
+    TextView dateInfo;
+    SharedPreferences sharedPrefs ;
 
-    public FavoriteAdapter(Context context, List<Meal> meals, FavouriteFragmentInterface listener) {
+
+    public MyPlanAdapter(Context context, List<Meal> meals, FavouriteFragmentInterface listener) {
         this.context = context;
         this.meals = meals;
         this.listener = listener;
@@ -53,7 +56,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         List<Meal> favoriteMeals = new ArrayList<>();
 
         for (Meal meal : meals) {
-            if (meal.getFav()) {
+            if (meal.getPlan()) {
                 favoriteMeals.add(meal);
             }
         }
@@ -64,17 +67,19 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
 
     @NonNull
     @Override
-    public MealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyPlanAdapter.MealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.favorite_meal_row, parent, false);
-        FavoriteAdapter.MealViewHolder viewHolder = new FavoriteAdapter.MealViewHolder(view);
+        View view = inflater.inflate(R.layout.myplan_meal_row, parent, false);
+        MyPlanAdapter.MealViewHolder viewHolder = new MyPlanAdapter.MealViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
-        //if (meals.get(position).getFav() == true) {
+            sharedPrefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            String message = sharedPrefs.getString("message", "");
             holder.txtTitle.setText(meals.get(position).getStrMeal());
+            holder.dateInfo.setText(meals.get(position).getDate());
             Glide.with(holder.itemView.getContext())
                     .load(meals.get(position).getStrMealThumb())
                     .into(holder.imageView);
@@ -109,6 +114,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
 
         }
 
+
+
+
+
+
     @Override
     public int getItemCount() {
         return meals.size();
@@ -122,6 +132,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         public ImageView imageView;
         public View layout;
         public Button unFav;
+        public TextView dateInfo;
+
+
 
         public MealViewHolder(View itemView) {
             super(itemView);
@@ -130,6 +143,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
             imageView = itemView.findViewById(R.id.thumbnail_fav);
             constraintLayout = itemView.findViewById(R.id.layout_fav);
             unFav = itemView.findViewById(R.id.unfav_button);
+            dateInfo=itemView.findViewById(R.id.dateinfoo);
 
 
         }
@@ -157,3 +171,5 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
 
     }
 }
+
+

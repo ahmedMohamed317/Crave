@@ -202,8 +202,13 @@ public class SignUpFragment extends Fragment {
                                     Intent intent = new Intent(getContext(), HomeActivity.class);
                                     intent.putExtra("userEmail",email);
                                     getContext().startActivity(intent);
-                                    AppDatabase appDatabase = AppDatabase.getInstance(getContext());
-                                    appDatabase.clearAllTables();
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            AppDatabase appDatabase = AppDatabase.getInstance(getContext());
+                                            appDatabase.mealDao().deleteAllMeals();
+                                        }
+                                    }).start();
 
 
                                 } else {

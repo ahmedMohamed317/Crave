@@ -92,7 +92,6 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
         mealFav = new Meal();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         mealsCollection = db.collection("meals");
-
         favImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,13 +102,16 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
 
                     }
                     if(isFav){
-                        favImg.setImageResource(R.drawable.ic_baseline_favorite_border_24);
-                        isFav=false;
-                        favouritePresenter.deleteFav(mealFav);
-                        Toast.makeText(getApplicationContext(), "The meal is deleted", Toast.LENGTH_SHORT).show();
-
+                        if(mealFav.getFav()==true) {
+                            favImg.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                            isFav = false;
+                            favouritePresenter.deleteFav(mealFav);
+                            Toast.makeText(getApplicationContext(), "The meal is deleted", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else {
+                        mealFav.setFav(true);
+                        mealFav.setPlan(false);
                         favImg.setImageResource(R.drawable.ic_baseline_favorite_24);
                         isFav=true;
                         favouritePresenter.addFav(mealFav);
@@ -135,6 +137,8 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
                     else {
                         favImg.setImageResource(R.drawable.ic_baseline_favorite_24);
                         isFav=true;
+                        mealFav.setFav(true);
+                        mealFav.setPlan(false);
                         favouritePresenter.addFav(mealFav);
                         DocumentReference mealDocument = mealsCollection.document();
                         mealFav.setEmail(HomeActivity.userEmail);

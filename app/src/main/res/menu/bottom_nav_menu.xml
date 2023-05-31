@@ -16,6 +16,6 @@
         android:title="Favourite" />
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="Profile" />
+        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:title="Calender" />
 </menu>

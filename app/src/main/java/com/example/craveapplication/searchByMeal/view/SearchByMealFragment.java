@@ -1,5 +1,7 @@
 package com.example.craveapplication.searchByMeal.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -58,6 +60,7 @@ public class SearchByMealFragment extends Fragment implements SearchByMealFragme
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_search_by_meal, container, false);
 
+
     }
 
     @Override
@@ -100,6 +103,10 @@ public class SearchByMealFragment extends Fragment implements SearchByMealFragme
                 Date date = selectedDate.getTime();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 formattedDate = sdf.format(date);
+                SharedPreferences sharedPrefs = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putString("message", formattedDate);
+                editor.apply();
                 System.out.println("Selected Date: " + formattedDate);
             }
         });

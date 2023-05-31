@@ -1,20 +1,14 @@
 package com.example.craveapplication.favourite.view;
 
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.craveapplication.HomeActivity;
 import com.example.craveapplication.R;
@@ -26,7 +20,6 @@ import com.example.craveapplication.roomDatabase.Repo;
 import com.example.craveapplication.searchResult.view.ResultAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,24 +29,25 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteFragment extends Fragment implements FavouriteFragmentInterface {
+public class MyPlanActivity extends AppCompatActivity implements FavouriteFragmentInterface {
 
     Repo repo;
     FavouritePresenter presenter;
-    FavoriteAdapter favMealAdapter;
+    MyPlanAdapter planMealAdapter;
     RecyclerView recyclerView;
     ResultAdapter resultAdapter;
     FavouriteFragmentInterface fav ;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference mealsCollection = db.collection("meals");
     DocumentReference mealDocument = mealsCollection.document();
-    FloatingActionButton floatingActionButton;
+    TextView dateInfo;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repo = Repo.getInstance( ConcreteLocalSource.getInstance(getContext()) , ApiClient.getInstance(),getContext());
-        favMealAdapter=new FavoriteAdapter(getContext(),new ArrayList<>() , this);
+        setContentView(R.layout.activity_my_plan_activityy);
+        repo = Repo.getInstance( ConcreteLocalSource.getInstance(getApplicationContext()) , ApiClient.getInstance(),getApplicationContext());
+        planMealAdapter=new MyPlanAdapter(getApplicationContext(),new ArrayList<>() , this);
         presenter = new FavouritePresenter( repo);
         fav = this;
         db = FirebaseFirestore.getInstance();
@@ -61,38 +55,18 @@ public class FavoriteFragment extends Fragment implements FavouriteFragmentInter
         mealDocument = mealsCollection.document();
         loadUserMeals(HomeActivity.userEmail);
 
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        floatingActionButton=view.findViewById(R.id.floatingActionButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), MyPlanActivity.class);
-                startActivity(intent);
-            }
-        });
-                recyclerView = view.findViewById(R.id.fav_recycle_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView=findViewById(R.id.plan_recycle_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        favMealAdapter=new FavoriteAdapter(getContext(), new ArrayList<>(),this);
-        recyclerView.setAdapter(favMealAdapter);
+        planMealAdapter=new MyPlanAdapter(getApplicationContext(), new ArrayList<>(),this);
+        recyclerView.setAdapter(planMealAdapter);
 
 
-        repo.getCachedMeals().observe(getViewLifecycleOwner(), new Observer<List<Meal>>() {
+        repo.getCachedMeals().observe(this, new Observer<List<Meal>>() {
             @Override
             public void onChanged(List<Meal> meals) {
-                favMealAdapter.setMeals(meals);
-                favMealAdapter.notifyDataSetChanged();
+                planMealAdapter.setMeals(meals);
+                planMealAdapter.notifyDataSetChanged();
 
             }
         });
@@ -110,9 +84,10 @@ public class FavoriteFragment extends Fragment implements FavouriteFragmentInter
     }
 
     public LiveData<List<Meal>> getFav() {
-         return presenter.getFav();
+        return presenter.getFav();
 
     }
+
     public void loadUserMeals(String userId) {
         repo.getUserMeals(userId, new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -126,16 +101,14 @@ public class FavoriteFragment extends Fragment implements FavouriteFragmentInter
                         System.out.println(meal.getStrMeal());
                         addFav(meal);
                     }
-                    System.out.println("succeded at the fav fragment");
+                    System.out.println("succeded at the plan ");
 
 
                 } else {
-                        System.out.println("Failed at the fav fragment");
+                    System.out.println("Failed at the plan ");
                 }
             }
         });
     }
-
-
 
 }

@@ -6,7 +6,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.craveapplication.roomDatabase.Repo;
@@ -15,6 +20,8 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
      public static String userEmail;
+     TextView signout ;
+     ImageView signoutImg;
 
 
 
@@ -27,7 +34,17 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
+        signoutImg = findViewById(R.id.imagesignout);
+        signoutImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), RegisterationActivity.class);
+                startActivity(intent);
+
+            }
+        });
+                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {

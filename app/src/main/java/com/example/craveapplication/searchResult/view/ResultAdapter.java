@@ -80,6 +80,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         holder.favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                meal.setFav(true);
+                meal.setPlan(false);
                 System.out.println(HomeActivity.userEmail);
                 if ( HomeActivity.userEmail==null)
                     {listener.addFav(meal);}
