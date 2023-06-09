@@ -2,7 +2,7 @@
 <resources>
 
     <style name="origin_color">
-        <item name="android:textColor">#AC5D50</item>
+        <item name="android:textColor">@color/active</item>
 
     </style>
     <style name="origin_font">

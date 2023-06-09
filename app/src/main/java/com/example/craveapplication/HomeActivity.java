@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.craveapplication.favourite.view.MyPlanActivity;
 import com.example.craveapplication.roomDatabase.Repo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -62,6 +63,10 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 case R.id.home:
                     navController.navigate(R.id.homeFragment);
+                    return true;
+                case R.id.plan:
+                    navController.navigate(R.id.myPlanActivity2);
+
                     return true;
 
                 default:

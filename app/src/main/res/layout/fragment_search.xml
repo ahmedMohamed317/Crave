@@ -30,7 +30,8 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search by Category"
+                android:fontFamily="@font/kavoon"
+                android:text="Search by Category :"
                 android:textColor="@color/active"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -43,10 +44,11 @@
 
             <TextView
                 android:id="@+id/textView23"
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search by Countries"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/kavoon"
+                android:text="Search by Countries :"
                 android:textColor="@color/active"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -56,12 +58,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" />
+
             <TextView
                 android:id="@+id/textView233"
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search by Ingredient"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/kavoon"
+                android:text="Search by Ingredient :"
                 android:textColor="@color/active"
                 android:textSize="20sp"
                 android:textStyle="bold" />

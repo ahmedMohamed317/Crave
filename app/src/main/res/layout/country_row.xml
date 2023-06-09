@@ -5,8 +5,10 @@
     android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    app:civ_border_color="@color/active"
+    app:civ_border_width="1dp"
     android:background="@drawable/category_view_background"
-    android:backgroundTint="@color/active">
+    android:backgroundTint="#A69A9A">
 
     <TextView
         android:id="@+id/countryStr"

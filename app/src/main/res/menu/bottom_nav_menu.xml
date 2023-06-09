@@ -8,14 +8,19 @@
         android:title="Home" />
     <item
         android:id="@+id/search"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="Search" />
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="Categories" />
     <item
         android:id="@+id/favourite"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="Favourite" />
     <item
         android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/plan"
         android:icon="@drawable/ic_baseline_calendar_month_24"
-        android:title="Calender" />
+        android:title="Plan" />
 </menu>

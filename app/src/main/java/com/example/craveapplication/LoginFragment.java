@@ -116,7 +116,7 @@ public class LoginFragment extends Fragment {
                                     Toast.makeText(getActivity().getApplicationContext(), "Login Success.",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getContext(), HomeActivity.class);
-                                    intent.putExtra("userEmail",email);
+                                    intent.putExtra("userEmail",email+password);
                                     getContext().startActivity(intent);
                                     new Thread(new Runnable() {
                                         @Override

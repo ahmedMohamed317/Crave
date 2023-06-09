@@ -16,7 +16,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     Context context;
 
-    int[] animations = {R.raw.food_carousel , R.raw.lottifood};
+    int[] animations = {R.raw.begin2 , R.raw.lottiefood};
 
     int[] headerText = {R.string.headerOne_onboarding , R.string.headerTwo_onboarding};
 

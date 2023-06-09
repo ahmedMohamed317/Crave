@@ -5,60 +5,47 @@
     android:id="@+id/beginingScrLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AC5D50"
-    android:backgroundTint="#AC5D50"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
     tools:context=".BeginningScreen" >
 
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/lily_script_one"
-        android:text="Crave"
-        android:textColor="@color/white"
-        android:textSize="96sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splash_lotti" />
 
     <TextView
         android:id="@+id/txt_beg_scr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-medium"
         android:text="Meal Planner Application "
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/splash_lotti"
-        android:layout_width="313dp"
-        android:layout_height="311dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="410dp"
+        android:layout_height="388dp"
+        android:layout_marginTop="164dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/burger" />
+        app:lottie_rawRes="@raw/lottiefood" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="80dp"
-        android:text="By Ahmed morad"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_beg_scr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

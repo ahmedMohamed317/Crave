@@ -21,6 +21,6 @@
 
     //indicator color
     <color name="inactive">#E3DCDC</color>
-    <color name="active">#AC5D50</color>
+    <color name="active">#000000</color>
 
 </resources>

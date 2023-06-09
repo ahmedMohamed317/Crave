@@ -63,7 +63,8 @@ public class HomeFragment extends Fragment  implements HomeFragmentInterface {
         randomMealAdapter = new RandomMealAdapter(getContext(), randomMeal );
         rvSuggestedMeal.setAdapter(adapter);
         rvRandomMeal.setAdapter(randomMealAdapter);
-        homeFragmentPresenter = new HomeFragmentPresenter( this , repo);
+
+        homeFragmentPresenter= new HomeFragmentPresenter( this , repo);
         homeFragmentPresenter.getMeals();
         homeFragmentPresenter.getRandomMeal();
     }

@@ -200,7 +200,7 @@ public class SignUpFragment extends Fragment {
                                     Toast.makeText(getContext(), "Authentication success.",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getContext(), HomeActivity.class);
-                                    intent.putExtra("userEmail",email);
+                                    intent.putExtra("userEmail",email+password);
                                     getContext().startActivity(intent);
                                     new Thread(new Runnable() {
                                         @Override
@@ -218,7 +218,7 @@ public class SignUpFragment extends Fragment {
                             }
                         });
             }
-        });
+        });/*
         editTextEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -245,7 +245,7 @@ public class SignUpFragment extends Fragment {
                 }
             }
         });
-
+*/
 
         editTextEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -333,6 +333,8 @@ public class SignUpFragment extends Fragment {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(getContext(), "Google Sign-In successful.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getContext(), HomeActivity.class);
+                            intent.putExtra("userEmail",account.getEmail()
+                            );
                             startActivity(intent);
                         } else {
                             Toast.makeText(getContext(), "Google Sign-In failed2.", Toast.LENGTH_SHORT).show();

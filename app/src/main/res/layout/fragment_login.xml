@@ -6,6 +6,20 @@
     android:background="@color/white"
     tools:context=".SignUpFragment">
 
+    <ImageView
+        android:id="@+id/backgroundlogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:alpha="0.87"
+
+        android:src="@drawable/background1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/background2" />
+
     <TextView
         android:id="@+id/skip"
         style="@style/origin_color"
@@ -14,7 +28,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:text="Skip"
-        android:textColor="@color/active"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,14 +93,18 @@
 
     <TextView
         android:id="@+id/dish_of_the_day"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="100dp"
-        android:text="Don't have an account"
-        android:textColor="#090101"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="110dp"
+
+        android:padding="5dp"
+        android:text="Don't have an account ?"
+        android:textColor="@color/black"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/signupTxt"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
@@ -94,10 +112,12 @@
         android:id="@+id/signupTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/sentence"
+        android:padding="5dp"
         android:text="Sign up"
-        android:textColor="@color/active"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,8 +141,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
-        android:fontFamily="@font/kavoon"
+        android:background="@drawable/search_view_rounded"
         android:text="Login"
+        android:textStyle="bold"
         app:circularflow_defaultRadius="15dp"
         app:circularflow_radiusInDP="15dp"
         app:layout_constraintCircleRadius="15dp"

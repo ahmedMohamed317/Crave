@@ -35,4 +35,8 @@
         android:name="com.example.craveapplication.searchByMeal.view.SearchByMealFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_search_by_meal" />
+    <activity
+        android:id="@+id/myPlanActivity2"
+        android:name="com.example.craveapplication.favourite.view.MyPlanActivity"
+        android:label="MyPlanActivity" />
 </navigation>

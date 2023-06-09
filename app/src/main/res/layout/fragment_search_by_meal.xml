@@ -12,11 +12,6 @@
         android:orientation="vertical"
         tools:context=".searchByMeal.view.SearchByMealFragment">
 
-        <CalendarView
-            android:id="@+id/calendarView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <EditText
             android:id="@+id/searchView"
             android:layout_width="match_parent"
@@ -33,7 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:itemCount="10"
-            tools:orientation="horizontal" />
+            tools:orientation="horizontal" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <CalendarView
+            android:id="@+id/calendarView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

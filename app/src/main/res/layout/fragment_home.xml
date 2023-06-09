@@ -14,18 +14,21 @@
         <TextView
             android:id="@+id/dish_of_the_day"
             style="@style/header_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/active"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/kavoon"
+            android:gravity="center"
             android:text="Dish of the day"
-            android:textColor="@color/active"
+            android:textColor="@color/black"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewDishOfTheDay"
-            android:layout_width="250dp"
+            android:layout_width="411dp"
+            app:civ_border_width="4dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"
@@ -37,13 +40,16 @@
         <TextView
             android:id="@+id/textView4"
             style="@style/header_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="283dp"
+            android:layout_height="60dp"
+
+            android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/active"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/kavoon"
+            android:gravity="center"
             android:text="Suggested Dishes"
-            android:textColor="@color/active"
+            android:textColor="@color/black"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView

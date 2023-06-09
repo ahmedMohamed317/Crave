@@ -15,7 +15,7 @@ import com.google.firebase.FirebaseApp;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final long DELAY_TIME_MS = 2000; // Delay time in milliseconds
+    private static final long DELAY_TIME_MS = 3500; // Delay time in milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

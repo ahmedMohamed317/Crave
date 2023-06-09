@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="544dp"
         android:clickable="true"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.988"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +23,7 @@
 
     <ScrollView
         android:id="@+id/scrollView_adapter"
-        android:layout_width="286dp"
+        android:layout_width="match_parent"
         android:layout_height="745dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
@@ -39,14 +40,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fav_recycle_view"
-                android:layout_width="284dp"
+                android:layout_width="match_parent"
                 android:layout_height="595dp"
+                android:layout_marginTop="22dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.304"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -55,12 +56,18 @@
         android:id="@+id/your_fav_meals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/kavoon"
+        android:gravity="center"
+        android:padding="5dp"
         android:text="Your favorite meals"
-        android:textColor="@color/active"
-        android:textSize="20sp"
+
+        android:textColor="@color/black"
+        android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView_adapter"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

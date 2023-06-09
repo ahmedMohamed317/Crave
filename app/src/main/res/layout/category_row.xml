@@ -7,7 +7,8 @@
     android:layout_height="120dp"
     android:layout_margin="8dp"
     android:background="@drawable/category_withrib"
-
+    app:civ_border_color="@color/active"
+    app:civ_border_width="1dp"
     android:elevation="4dp">
 
 
@@ -18,8 +19,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/pp"
-        app:civ_border_color="@color/active"
-        app:civ_border_width="1dp"
+
         app:layout_constraintBottom_toTopOf="@+id/strCategory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +33,7 @@
         android:text="TextView"
         android:textColor="@color/white"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

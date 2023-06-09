@@ -2,6 +2,7 @@ package com.example.craveapplication.mealDetails.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -84,8 +85,8 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
         getLifecycle().addObserver(youTubePlayerView);
         rvIngredients = findViewById(R.id.recyclerViewIngredientsItemDetails);
         ingredientsList = new ArrayList<>();
-        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        GridLayoutManager layoutManager=new GridLayoutManager(this,3);
+        layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         rvIngredients.setLayoutManager(layoutManager);
         adapter = new MealIngeridentsAdapter(getApplicationContext(),ingredientsList);
         rvIngredients.setAdapter(adapter);
